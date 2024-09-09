@@ -33,7 +33,9 @@ public partial class MainWindow : Window
         GenerateGridUI();
     }
 
-  
+    /***
+     * Method that initializes the game grid
+     */
     private void InitializeGameGrid()
     {
         gameGrid = new Cell[Rows, Columns];
@@ -61,6 +63,9 @@ public partial class MainWindow : Window
 
     }
 
+    /***
+     * Method for starting the games timer
+     */
     private void GameTimer_Tick(object sender, EventArgs e)
     {
         elapsedTime = elapsedTime.Add(TimeSpan.FromSeconds(1));
@@ -69,6 +74,9 @@ public partial class MainWindow : Window
     }
 
 
+    /***
+     * Method for placing the mines at random places
+     */
     private void PlaceMines()
     {
         
@@ -91,7 +99,9 @@ public partial class MainWindow : Window
     
     }
     
-   
+   /***
+    * Method for counting how many mines are adjacent to each non-mine cell
+    */
     private void CountNeighbouringMines()
     {
         for (int row = 0; row < Rows; row++)
@@ -122,7 +132,9 @@ public partial class MainWindow : Window
             }
         }
     }
-    
+    /***
+     * Generates the grid UI, by placing buttons
+     */
     private void GenerateGridUI()
     {
         for (int row = 0; row < Rows; row++)
@@ -141,6 +153,9 @@ public partial class MainWindow : Window
             }
         }
     }
+    /***
+     * Button click event
+     */
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         MineButton button = sender as MineButton;
@@ -149,7 +164,9 @@ public partial class MainWindow : Window
 
         RevealCell(row, column);
     }
-
+    /***
+    * Method for revealing the cell, that is clicked
+    */
     private void RevealCell(int row, int column)
     {
         if (!gameTime.IsEnabled)
@@ -197,7 +214,9 @@ public partial class MainWindow : Window
         }
 
     }
-
+    /***
+     * Method for revealing surrounding cells
+     */
     private void RevealSurroundingCells(int row, int column)
     {
         for (int i = -1; i <= 1; i++)
@@ -219,6 +238,9 @@ public partial class MainWindow : Window
         }
     }
 
+    /***
+     * Method for resetting the game
+     */
     private void ResetGame()
     {
         gameTime.Stop();
@@ -227,7 +249,9 @@ public partial class MainWindow : Window
         CountNeighbouringMines();
         GenerateGridUI();
     }
-
+    /***
+     * Method for checking for a win
+     */
     private bool CheckForWin()
     {
         for (int row = 0; row < Rows; row++)
